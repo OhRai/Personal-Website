@@ -21,10 +21,10 @@ const Front = () => {
               <p>My personal portfolio website that not only showcases my projects but also my front-end skills.</p>
           </div>
           <div className='flex gap-3'>
-              <a target='_blank'>
+              <a href='https://github.com/OhRai/Personal-Website' target='_blank'>
                 <img src={github} draggable='false' alt='github' className='h-auto w-5'/>
               </a>
-              <a target='_blank'>
+              <a href='https://raiyansamin.me' target='_blank'>
                 <img src={link} draggable='false' alt='link' className='h-auto w-5'/>
               </a>
           </div>

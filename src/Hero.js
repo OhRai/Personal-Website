@@ -72,10 +72,10 @@ const Hero = () => {
             </div>
 
             <div className='mt-10 flex gap-10 z-10'>
-                <h2>Github</h2>
-                <h2>LinkedIn</h2>
-                <h2>Resume</h2>
-                <h2>Email</h2>
+                <a href='https://github.com/OhRai' target='_blank'>Github</a>
+                <a href='https://www.linkedin.com/in/raiyansamin/' target='_blank'>LinkedIn</a>
+                <a href='https://drive.google.com/drive/folders/1zJWMupTDyJ1v1lrQdQY3ZdTi7pgiuHRW?usp=drive_link' target='_blank'>Resume</a>
+                <a href='mailto:rrsamin@uwaterloo.ca' target='_blank'>Email</a>
             </div>
             {onePos.map((position, index) => (
                 <motion.img key={index} src={one} alt="svg" draggable='false' className="absolute" style={{ opacity: opacity, y: backgroundY, left: position.x, top: position.y, width: position.size, height: position.size }} />
