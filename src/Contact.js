@@ -1,7 +1,5 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import emailjs from '@emailjs/browser'; 
-
-import bg from './images/background.jpg'
 
 require('dotenv').config();
 
@@ -12,13 +10,17 @@ const Contact = () => {
 
   const form = useRef();
 
+  const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+
   const sendEmail = (e) => {
     e.preventDefault();
 
     emailjs.sendForm(serviceId, templateId, form.current, publicKey)
       .then((result) => {
           console.log(result.text);
-      }, (error) => {
+          setSent(true);
+          }, (error) => {
           console.log(error.text);
       });
   };
@@ -40,11 +42,14 @@ const Contact = () => {
                     <label className="mb-2 font-bold">Message:</label>
                     <textarea className="border-2 border-black rounded-lg px-2 py-1" name="message" />   
                 </div>
-                <div className="p-2 ml-auto mr-auto w-fit rounded-xl drop-shadow-LG hover:bg-blue-400 hover:cursor-pointer bg-blue-500 text-orange-50 text-center flex gap-2">
-                    <button type="submit" value="Send">Send</button>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
-                    </svg>
+                <div className="ml-auto mr-auto w-fit rounded-xl drop-shadow-lg bg-blue-400 text-orange-50 text-center flex gap-2">
+                    {sent ? <p className="p-2">Sent!</p> : 
+                    <div className="p-2 ml-auto mr-auto w-fit rounded-xl drop-shadow-LG hover:bg-blue-400 hover:cursor-pointer bg-blue-500 text-orange-50 text-center flex gap-2">
+                        <button type="submit" value="Send" onClick={() => setSending(!sending)}>{sending ? "Sending..." : "Sent"}</button>
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                        </svg>
+                    </div>}
                 </div>
             </form>
         </div>
